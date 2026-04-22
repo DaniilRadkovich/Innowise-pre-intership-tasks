@@ -33,7 +33,6 @@ public class JsonSerializer {
         }
 
         if (object instanceof Collection) {
-
             return processCollection((Collection<?>) object, index, visited);
         }
 

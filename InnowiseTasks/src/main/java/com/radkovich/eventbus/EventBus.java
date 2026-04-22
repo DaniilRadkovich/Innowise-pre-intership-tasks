@@ -32,8 +32,8 @@ public class EventBus {
     }
 
     public void unregister(Object listener) {
-        for (List<Subscriber> subscriberList : subscribers.values()) {
-            subscriberList.removeIf(sub -> sub.target.equals(listener));
+        for (List<Subscriber> subscriber : subscribers.values()) {
+            subscriber.removeIf(sub -> sub.target.equals(listener));
         }
     }
 

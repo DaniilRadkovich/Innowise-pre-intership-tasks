@@ -13,6 +13,7 @@ public class Handler {
     public static void handleClient(Socket socket, String directory) {
         try (BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
              OutputStream output = socket.getOutputStream()) {
+
             String requestLine = input.readLine();
             if (requestLine == null || requestLine.isEmpty()) return;
 
@@ -45,18 +46,18 @@ public class Handler {
         sendResponse(output, 200, "OK", TEXT_PLAIN, "Hello from Custom Server!");
     }
 
-    private static void send405(OutputStream output) throws IOException {
-        sendResponse(output, 405, "Method not allowed", TEXT_PLAIN, "Only GET method supported!");
+    private static void send404(OutputStream output) throws IOException {
+        sendResponse(output, 404, "Not found!", TEXT_PLAIN, "404 Not found!");
     }
 
-    private static void send404(OutputStream output) throws IOException {
-        sendResponse(output, 404, "Not found!", TEXT_PLAIN, "404 Not found");
+    private static void send405(OutputStream output) throws IOException {
+        sendResponse(output, 405, "Method not allowed!", TEXT_PLAIN, "Only GET method supported!");
     }
 
     private static void send500(Socket socket) {
         try {
             OutputStream out = socket.getOutputStream();
-            sendResponse(out, 500, "Internal Server Error", TEXT_PLAIN, "500 Internal Server Error");
+            sendResponse(out, 500, "Internal Server Error!", TEXT_PLAIN, "500 Internal Server Error!");
         } catch (IOException e) {
             e.printStackTrace();
         }

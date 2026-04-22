@@ -1,19 +1,21 @@
 package com.radkovich.eventbus;
 
 public class ListenerA {
-    public int counter = 0;
+    int counterA = 0;
 
     @Subscribe
     public void handle(BaseEvent event) {
-        counter++;
+        counterA++;
         System.out.println("ListenerA received: " + event.message);
     }
 }
 
 class ListenerB {
+    int counterB = 0;
 
     @Subscribe
     public void handle(ChildEvent event) {
+        counterB++;
         System.out.println("ListenerB received child: " + event.message);
     }
 }
